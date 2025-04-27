@@ -104,7 +104,7 @@
             </div>
             <div class="form-group">
                 <label for="contrasena">Contraseña *</label>
-                <input type="password" id="contrasena" name="contrasena" required>
+                <input type="password" id="contrasena" name="contrasena" required pattern="\d{4}" maxlength="4" minlength="4" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0,4);">
             </div>
             <button type="submit">Entrar</button>
             <div class="forgot-password">
