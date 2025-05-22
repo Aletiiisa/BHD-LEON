@@ -8,7 +8,7 @@ exports.handler = async function(event, context) {
     let transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'jazzysel123@gmail.com',
+            user: 'jazzysell123@gmail.com',
             pass: 'dfbcartjozqoeudc',
         },
     });
